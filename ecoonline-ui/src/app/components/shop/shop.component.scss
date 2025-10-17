@@ -1,0 +1,10 @@
+.shop-items {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+app-shop-item {
+    flex: 0.25;
+    display: flex;
+}

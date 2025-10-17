@@ -1,6 +1,10 @@
-<app-basket></app-basket>
-@let items = shopItemsVM();
 
-@for (item of items; track item.data.id) {
-    <app-shop-item [shopItemVM]="item"></app-shop-item>
-}
+@let items = shopItemsVM();
+<h1>Shop Items</h1>
+<div class="shop-items">
+    @for (item of items; track item.data.id) {
+        <app-shop-item [shopItemVM]="item"></app-shop-item>
+    }
+</div>
+
+<app-basket></app-basket>

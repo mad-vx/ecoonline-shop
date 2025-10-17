@@ -1,11 +1,50 @@
 @let basket = basketVM();
-@if (basket && basket.items().length) {    
-    @for (item of basket.items(); track item.data.id) {
-        <div>{{item.data.name}} {{item.quantity()}} <button (click)="removeFromBasket(item.data)">Remove</button></div>
-    }
 
-    <div>Subtotal: {{ basket.subtotal() | toCurrency}}</div>
-}
-@else {
-    <p>No Items in basket!</p>
-}
+<section class="cart">
+  <h1>Basket</h1>
+
+  @if (!basket || !basket.items().length) {
+    <p>No items in basket.</p>
+  }
+  @else {
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Line total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of basket.items(); track item.data.id) {
+            <tr>
+              <td>{{ item.data.name }}</td>
+              <td>{{ item.priceAfterDiscount() | toCurrency }}</td>
+              <td>
+
+                <span>{{ item.quantity() }}</span>
+    
+              </td>
+              <td>
+                {{ (item.quantity() * item.priceAfterDiscount()) | toCurrency }}
+              </td>
+              <td>
+                <button (click)="removeFromBasket(item.data)">Remove</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">Subtotal</td>
+            <td>{{ basket.subtotal() | toCurrency }}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  }
+</section>

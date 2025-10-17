@@ -1,4 +1,21 @@
+.container  {
+    border: solid 1px gray;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    flex: 1;
+    .name {
+        font-weight: 600;
+        font-size: larger;
+    }
+
+    .description {
+        font-style: italic;
+    }
+}
+
 .discounted {
     text-decoration: line-through;
     color: red;
 }
+
