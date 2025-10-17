@@ -8,9 +8,10 @@ import { ShopItemViewModel } from '../../model/ViewModels/shop-item-view-model';
 
 @Component({
   selector: 'app-shop',
+  standalone: true,
   imports: [BasketComponent, ShopItemComponent],
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.scss'
+  styleUrl: './shop.component.scss',
 })
 export class ShopComponent {
   private shopService = inject(ShopService);
@@ -22,7 +23,7 @@ export class ShopComponent {
     this.shopService.getItems()
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe((items: ShopItem[]) => {
-      this.shopItemsVM.set(items.flatMap((item: ShopItem) => new ShopItemViewModel(item)));
+      this.shopItemsVM.set(items.map((item: ShopItem) => new ShopItemViewModel(item)));
     })
   }
 }

@@ -5,6 +5,7 @@ import { ToCurrencyPipe } from '../../pipes/to-currency.pipe';
 
 @Component({
   selector: 'app-basket',
+  standalone: true,
   imports: [ToCurrencyPipe],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'

@@ -6,6 +6,7 @@ import { ToCurrencyPipe } from "../../pipes/to-currency.pipe";
 
 @Component({
   selector: 'app-shop-item',
+  standalone: true,
   imports: [ToCurrencyPipe],
   templateUrl: './shop-item.component.html',
   styleUrl: './shop-item.component.scss'

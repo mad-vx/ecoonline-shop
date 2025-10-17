@@ -3,6 +3,7 @@ import { ShopComponent } from './components/shop/shop.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [ShopComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
