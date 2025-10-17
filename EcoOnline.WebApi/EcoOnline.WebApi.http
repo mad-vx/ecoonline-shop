@@ -1,0 +1,6 @@
+@EcoOnline.WebApi_HostAddress = http://localhost:5249
+
+GET {{EcoOnline.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
