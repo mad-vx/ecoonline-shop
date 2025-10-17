@@ -15,6 +15,6 @@ namespace EcoOnline.WebApi.Controllers
         }
 
         [HttpGet("items")]
-        public ActionResult<Shop> GetBasket() => Ok(_shopData.GetAll());
+        public ActionResult<IReadOnlyCollection<ShopItem>> GetBasket() => Ok(_shopData.GetAll());
     }
 }
