@@ -1,0 +1,9 @@
+@let _basket = basket();
+@if (_basket) {
+    @for (item of _basket.items; track item.id) {
+        <div>{{item.name}}</div>
+    }
+}
+@else {
+    <p>No Items in basket!</p>
+}
