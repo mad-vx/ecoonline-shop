@@ -1,1 +1,10 @@
-<p>shop-item works!</p>
+@let item = shopItemVM();
+
+<div>{{item.data.name}}</div>
+<div>{{item.data.description}}</div>
+@if (item.isDiscounted()) {
+    <div class="discounted">{{item.data.price | toCurrency }}</div>
+}
+<div>{{item.priceAfterDiscount() | toCurrency}}</div>
+
+<button (click)="addToBasket(item.data)">Add to basket</button>

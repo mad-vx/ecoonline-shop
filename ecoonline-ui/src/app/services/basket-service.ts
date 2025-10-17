@@ -1,13 +1,18 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Basket } from '../model/basket-item';
+import { Injectable, inject, signal } from '@angular/core';
+import { ApiService } from './api-service';
+import { Basket } from '../model/Dtos/basket.model';
+import { BasketViewModel } from '../model/ViewModels/basket-view-model';
 
 @Injectable({ providedIn: 'root' })
 export class BasketService {
-  private http = inject(HttpClient);
-  private base = 'http://localhost:5249/api/basket'; 
+  private http = inject(ApiService);
 
-  getBasket() {
-    return this.http.get<Basket>(`${this.base}/basket`);
+  public basketViewModel = signal<BasketViewModel | undefined>(undefined);
+
+  constructor() {
+    this.http.get<Basket>('basket/basket').subscribe((basket: Basket) => {
+      this.basketViewModel.set(new BasketViewModel(basket.items));
+    });
   }
+
 }

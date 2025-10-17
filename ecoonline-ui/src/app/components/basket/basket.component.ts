@@ -1,25 +1,20 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { BasketService } from '../../services/basket-service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Basket } from '../../model/basket-item';
+import { ShopItem } from '../../model/Dtos/shop-item.model';
+import { ToCurrencyPipe } from '../../pipes/to-currency.pipe';
 
 @Component({
   selector: 'app-basket',
-  imports: [],
+  imports: [ToCurrencyPipe],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent {
   private basketService = inject(BasketService);
-  private destroyRef = inject(DestroyRef);
 
-  basket = signal<Basket | undefined>(undefined);
+  basketVM = computed(() => this.basketService.basketViewModel());
 
-  ngOnInit(): void {
-    this.basketService.getBasket()
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe((basket: Basket) => {
-      this.basket.set(basket);
-    })
+  removeFromBasket(item: ShopItem) {
+    this.basketVM()?.removeFromBasket(item.id);
   }
 }

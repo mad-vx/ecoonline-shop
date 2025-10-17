@@ -1,4 +1,4 @@
-﻿using EcoOnline.Model;
+﻿using EcoOnline.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoOnline.WebApi.Controllers

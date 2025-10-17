@@ -1,4 +1,4 @@
-﻿namespace EcoOnline.Model;
+﻿namespace EcoOnline.Model.Models;
 
 public class ShopItem
 {
@@ -6,4 +6,5 @@ public class ShopItem
     public required string Name { get; set; }
     public required string Description { get; set; }
     public decimal Price { get; set; }
+    public decimal DiscountPercentage { get; set; }
 }

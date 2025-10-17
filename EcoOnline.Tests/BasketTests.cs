@@ -1,4 +1,4 @@
-using EcoOnline.Model;
+using EcoOnline.Model.Models;
 
 namespace EcoOnline.Tests;
 

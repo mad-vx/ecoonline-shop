@@ -1,8 +1,10 @@
-@let _basket = basket();
-@if (_basket) {
-    @for (item of _basket.items; track item.id) {
-        <div>{{item.name}}</div>
+@let basket = basketVM();
+@if (basket && basket.items().length) {    
+    @for (item of basket.items(); track item.data.id) {
+        <div>{{item.data.name}} {{item.quantity()}} <button (click)="removeFromBasket(item.data)">Remove</button></div>
     }
+
+    <div>Subtotal: {{ basket.subtotal() | toCurrency}}</div>
 }
 @else {
     <p>No Items in basket!</p>

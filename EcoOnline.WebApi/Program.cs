@@ -1,4 +1,5 @@
-using EcoOnline.Model;
+using EcoOnline.Model.Interfaces;
+using EcoOnline.Model.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,10 @@ builder.Services.AddCors(opt =>
         .AllowAnyMethod());
 });
 
+//TODO: Refactor these so they are added to the builder.Services in the EcoOnline.Model project using reflection if possible 
+builder.Services.AddSingleton<IShopData>(_ => InMemoryShopData.CreateData());
 builder.Services.AddSingleton<Basket>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -31,6 +35,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
-app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
